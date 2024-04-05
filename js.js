@@ -30,12 +30,18 @@ function checkSlide(e) {
 	sliderImgs.forEach(img => {
 		const slideInAt = window.scrollY + window.innerHeight - img.height / 2
 		// ↑ to nam daje informację ile jesteśmy od dołu okna przeglądarki, bo tego właśnie potrzebujemy do tego projektu minus połowa wysokości obrazka
-		console.log(slideInAt)
         const imageBottom = img.offsetTop + img.height
-        // bottom of the img
+        // spód obrazka jak daleko jest od górnej krawędzi okna przeglądarki
 
         const isHalfShown = slideInAt > img.offsetTop
+		// widać pół obrazka na stronie obojętnie, od góry czy od dołu. img.offsetTop jest stałą wartością i pokazuje ile pixeli od góry strony znajduje się górna krawędź obrazka, natomiast slideInAt zmienia się wraz ze scrollowaniem. Jeśli slideInAt przekroczy wartość img.offsetTop, to obrazek 'wjedzie' na stronę.
         const isNotScrolledPast = window.scrollY < imageBottom
+
+		if(isHalfShown && isNotScrolledPast){
+			img.classList.add('active')
+		} else {
+			img.classList.remove('active')
+		}
 	})
 }
 
