@@ -42,7 +42,7 @@ function checkSlide(e) {
 		} else {
 			img.classList.remove('active')
 		}
-	})
+	}) 
 }
 
 window.addEventListener('scroll', debounce(checkSlide))
